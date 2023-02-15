@@ -184,6 +184,26 @@
                 </div>
             </div>
         </div>
+        <div class="info-data">
+            <div class="row">
+                <h3>Users</h3>
+                <div class="col-lg">
+                    <div class="table-responsive container">
+                        <table class="table" id="tablesss">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <!-- MAIN -->
 @endsection
@@ -230,6 +250,35 @@
                     {
                         data: 'title',
                         name: 'title'
+                    },
+                ],
+                order: [
+                    [1, 'asc']
+                ]
+            });
+        });
+    </script>
+    <script>
+        $(function() {
+            $('#tablesss').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '/users/json',
+                columns: [{
+                        data: null,
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        },
+                        searchable: false,
+                        orderable: false
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
                     },
                 ],
                 order: [
